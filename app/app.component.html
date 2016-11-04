@@ -1,7 +1,40 @@
-<StackLayout>
-    <Label text="Tap the button" class="title"></Label>
-    
-    <Button text="TAP" (tap)="onTap()"></Button>
+<DockLayout (tap)="onTap()">
 
-    <Label [text]="message" class="message" textWrap="true"></Label>
-</StackLayout>
+
+    <Label [text]="counter" 
+            class="number" 
+            dock="top">
+    </Label>
+
+
+    <StackLayout  
+        verticalAlignment="bottom"
+        horizontalAlignment="center"
+        style.marginBottom="15"
+        height="200"
+        dock="bottom">
+        
+        <Label 
+            text="Personas"
+            horizontalAlignment="center" 
+            style.marginBottom="25"
+            class="label" 
+            dock="bottom">
+        </Label>
+        <StackLayout 
+            orientation="horizontal" 
+            horizontalAlignment="center">
+            <Button 
+                style.marginRight="25"            
+                text="&#xf01e;"
+                (tap)="reboot()">
+            </Button>
+            <Button                             
+                text="&#xf0c9;" 
+                (tap)="showCounters()">
+            </Button> 
+        </StackLayout>
+
+    </StackLayout>
+
+</DockLayout   >

@@ -1,21 +1,30 @@
 ﻿@import '~/css/core.light.css'; 
 
-button, label, stack-layout {
-    horizontal-align: center;    
+
+Page {
+    background-color: #3F51B5;
+    font-family: "BebasNeueBold";
 }
 
 button {
-    font-size: 36;
+    font-family: "fontawesome";
+    font-size: 40;
+    width:100;
+    height:100;
+    border-width:1;    
+    border-radius:50;
+    background-color:white;
+    color: #3F51B5;
 }
 
-.title {
-    font-size: 30;
-    margin: 20;
+.label {
+    color: white;
+    font-size: 35;
 }
-
-.message {
-    font-size: 20;
-    color: #284848;
-    text-align: center;
-    margin: 0 20;
+.number {  
+    margin-top: 35;
+    font-family: "BebasNeueBold";
+    font-size: 140;
+    color: #FFFFFF;
+    text-align: center;    
 } 
