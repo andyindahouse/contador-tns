@@ -1,23 +1,8 @@
-import {Component} from "@angular/core";
+import { Component } from "@angular/core";
 
 @Component({
-    selector: "my-app",
-    templateUrl: "app.component.html",
+  selector: "main",
+  template: "<page-router-outlet></page-router-outlet>"
 })
-export class AppComponent {
-    
-    counter: number = 9999;   
-    
-    onTap() {
-        this.counter++;
-    }
 
-    reboot() {
-        this.counter=0;
-    }
-
-    showCounters(){
-        alert('under construction')
-    }
-
-}
+export class AppComponent {}

@@ -1,0 +1,44 @@
+
+<GridLayout rows="auto, *">
+
+  <GridLayout row="0" columns="*, auto" class="add-bar">
+
+    <TextField 
+        [(ngModel)]="counterName"
+        hint="Enter a new counter" 
+        col="0">
+    </TextField>   
+
+    <Label (tap)="add()" col="1" text="&#xf067;"></Label>
+
+  </GridLayout>
+
+  <ListView [items]="counters" row="1" class="small-spacing">
+
+    <template let-item="item">
+     
+      <GridLayout
+        (tap)="select(item)"  
+        orientation="horizontal"
+        columns="*, auto"
+        class="item">
+
+        <Label
+          col="0" 
+          [text]="item.name"
+          class="medium-spacing">
+        </Label>
+        
+        <Label
+          col="1" 
+          [text]="item.number"
+          class="medium-spacing">          
+        </Label>  
+        
+      </GridLayout>
+
+    </template>
+    
+  </ListView>
+
+</GridLayout>    

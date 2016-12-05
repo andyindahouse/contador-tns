@@ -1,11 +1,9 @@
 <DockLayout (tap)="onTap()">
 
-
-    <Label [text]="counter" 
+    <Label [text]="selected.number" 
             class="number" 
             dock="top">
     </Label>
-
 
     <StackLayout  
         verticalAlignment="bottom"
@@ -15,26 +13,30 @@
         dock="bottom">
         
         <Label 
-            text="Personas"
+            [text]="selected.name"
             horizontalAlignment="center" 
             style.marginBottom="25"
             class="label" 
             dock="bottom">
         </Label>
+
         <StackLayout 
             orientation="horizontal" 
             horizontalAlignment="center">
+
             <Button 
                 style.marginRight="25"            
                 text="&#xf01e;"
                 (tap)="reboot()">
             </Button>
+
             <Button                             
                 text="&#xf0c9;" 
                 (tap)="showCounters()">
             </Button> 
+
         </StackLayout>
 
     </StackLayout>
 
-</DockLayout   >
+</DockLayout>
