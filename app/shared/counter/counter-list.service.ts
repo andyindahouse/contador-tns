@@ -1,12 +1,13 @@
-import { Injectable } from "@angular/core";
-
+import { Injectable, NgZone } from "@angular/core";
 import { Counter } from './counter'
 
 @Injectable()
 export class CounterListService {
 
     selected: Counter
-    counters: Array<Counter> = [];
+    counters: Array<Counter> = []
+    
+    constructor(private zone: NgZone){}
 
     getSelected(): Counter{
 
@@ -19,7 +20,7 @@ export class CounterListService {
     }
 
     select(counter: Counter): Counter {
-
+        
         let index = this.counters.indexOf(counter)
         this.selected = this.counters[index]
 
@@ -28,19 +29,24 @@ export class CounterListService {
 
     add(name: string): Counter{
 
+        //perm
+
         let counter = new Counter(name, 0)
         this.counters.push(counter)
 
         return counter
     }
 
-    delete(item: Counter): Counter{
+    del(index: number): number{
 
-        let index = this.counters.indexOf(item)
-        this.counters.splice(index, 1)
+        //perm
 
-        return item
-    }
+        this.zone.run(() => {
+            return this.counters.splice(index, 1)
+        });
+
+        return index
+    }     
 
     update(number: number){
 

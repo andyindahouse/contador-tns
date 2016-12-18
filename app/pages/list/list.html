@@ -4,21 +4,32 @@
   <GridLayout row="0" columns="*, auto" class="add-bar">
 
     <TextField 
+        #counterTextField
         [(ngModel)]="counterName"
+        returnKeyType="done"
+        (returnPress)="add()"
         hint="Enter a new counter" 
         col="0">
     </TextField>   
 
-    <Label (tap)="add()" col="1" text="&#xf067;"></Label>
+    <Label  
+      (tap)="add()" 
+      col="1" 
+      class="icon"
+      text="&#xf067;"></Label>
 
   </GridLayout>
 
-  <ListView [items]="counters" row="1" class="small-spacing">
+  <RadListView 
+    id="listView" itemSwipe="true" selectionBehavior="None" 
+    [items]="counters" row="1" class="small-spacing"
+    (itemSwipeProgressStarted)="onSwipeCellStarted($event)"
+    (itemSwipeProgressEnded)="onSwipeCellFinished($event)"  
+    (itemTap)="onItemClick($event)">
 
-    <template let-item="item">
+    <template tkListItemTemplate let-item="item">
      
-      <GridLayout
-        (tap)="select(item)"  
+      <GridLayout        
         orientation="horizontal"
         columns="*, auto"
         class="item">
@@ -38,7 +49,24 @@
       </GridLayout>
 
     </template>
-    
-  </ListView>
 
-</GridLayout>    
+    <GridLayout 
+      *tkListItemSwipeTemplate columns="auto, *, auto">
+
+      <StackLayout 
+        id="delete-view"    
+        class="item itemSwipeTemplate"        
+        col="2">
+
+          <Label            
+            class="icon"
+            text="&#xf1f8;">
+          </Label>
+
+      </StackLayout>
+
+    </GridLayout>
+    
+  </RadListView>
+
+</GridLayout>

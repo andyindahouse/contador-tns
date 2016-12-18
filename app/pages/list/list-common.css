@@ -6,15 +6,23 @@ GridLayout {
 .add-bar {  
   padding: 5 10;
 }
-.add-bar Label {
-  font-family: "fontawesome";  
-  height: 15;
-  vertical-align: center;
-  margin-left: 10;
-  margin-right: 5;
-}
 
 .item {
     background-color: #3F51B5;
     color: white;
+    margin-bottom: 5;
+    font-size: 20;
+    height: 40;
+}
+
+.icon {
+  font-family: "fontawesome";    
+  font-size: 25;  
+  vertical-align: center; 
+}
+
+.itemSwipeTemplate {
+  background-color: #FFFFFF;
+  color: red;  
+  vertical-align: center;
 }

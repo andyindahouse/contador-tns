@@ -1,6 +1,8 @@
+import { LISTVIEW_DIRECTIVES } from 'nativescript-telerik-ui/listview/angular'
+
 import { NgModule } from '@angular/core'
-import { NativeScriptFormsModule } from "nativescript-angular/forms";
-import { NativeScriptModule } from "nativescript-angular/platform";
+import { NativeScriptFormsModule } from "nativescript-angular/forms"
+import { NativeScriptModule } from "nativescript-angular/platform"
 import { NativeScriptRouterModule } from 'nativescript-angular/router'
 
 import { AppComponent } from './app.component'
@@ -16,6 +18,7 @@ import { CounterListService } from './shared/counter/counter-list.service'
     ],
     providers: [CounterListService],    
     declarations: [
+        LISTVIEW_DIRECTIVES,
         AppComponent,
         ...navigatableComponents
     ],

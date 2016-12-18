@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
-import { Router } from "@angular/router";
+import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core'
+import { Router } from "@angular/router"
+
+import { ListViewEventData, RadListView }  from "nativescript-telerik-ui/listview"
+import * as frameModule from "ui/frame"
+import { TextField } from "ui/text-field"
+import { ObservableArray } from "data/observable-array"
+
 
 import { CounterListService } from './../../shared/counter/counter-list.service'
 import { Counter } from './../../shared/counter/counter'
@@ -11,19 +16,21 @@ import { Counter } from './../../shared/counter/counter'
   styleUrls: ['pages/list/list-common.css']
 })
 
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit {    
   
   counterName: string = ''
   selected: Counter
-  counters: Array<Counter> = []
+  counters: ObservableArray <Counter>
+  @ViewChild("counterTextField") counterTextField : ElementRef
+  
 
   constructor(private counterListService: CounterListService,
-              private router: Router){}
+              private router: Router, 
+              private zone: NgZone){}
 
   ngOnInit(){
 
-    this.selected = this.counterListService.getSelected()
-    this.counters = this.counterListService.getAll();
+    this.counters = new ObservableArray(this.counterListService.getAll())
 
   }
 
@@ -37,12 +44,56 @@ export class ListComponent implements OnInit {
   add() {     
 
     if (this.counterName.trim() === '') {
-      alert('Enter a counter name');
-      return;
+      alert('Enter a counter name')
+      return
+    }
+    
+    // Dismiss the keyboard
+    let textField = <TextField>this.counterTextField.nativeElement
+    textField.dismissSoftInput()
+
+    this.counters.push(    
+      this.counterListService.add(this.counterName)
+    )
+    this.counterName = ''   
+
+  }
+
+  del(index: number){      
+      
+      this.counterListService.del(index)
+      this.zone.run(() => {
+        this.counters.splice(index, 1)
+      })
+
+      console.log('length' + this.counterListService.getAll().length)
+
+  }
+
+  // > Manage swipe events
+
+  onSwipeCellStarted(args: ListViewEventData) {
+    
+    var swipeLimits = args.data.swipeLimits;
+    var listView = frameModule.topmost().currentPage.getViewById("listView");
+
+    swipeLimits.threshold = listView.getMeasuredWidth();
+    swipeLimits.left = 0;
+    swipeLimits.right = listView.getMeasuredWidth();
+
+  }
+
+  onSwipeCellFinished(args: ListViewEventData) {
+    
+    if (args.data.x < -400) {        
+       this.del(args.itemIndex)      
     }
 
-    this.counterListService.add(this.counterName)
-    this.counterName = ''
+  }
+
+  onItemClick(args: ListViewEventData) {
+
+    this.select(this.counters.getItem(args.itemIndex))
 
   }
   
