@@ -52,21 +52,24 @@ export class ListComponent implements OnInit {
     let textField = <TextField>this.counterTextField.nativeElement
     textField.dismissSoftInput()
 
-    this.counters.push(    
+    this.counters.unshift(    
       this.counterListService.add(this.counterName)
     )
     this.counterName = ''   
 
   }
 
-  del(index: number){      
-      
-      this.counterListService.del(index)
-      this.zone.run(() => {
-        this.counters.splice(index, 1)
-      })
+  del(index: number){    
 
-      console.log('length' + this.counterListService.getAll().length)
+    if(this.counters.length === 1){
+      alert('You can´t delete your last counter')
+      return;
+    }
+    
+    this.counterListService.del(index)
+    this.zone.run(() => {
+      this.counters.splice(index, 1)
+    })
 
   }
 

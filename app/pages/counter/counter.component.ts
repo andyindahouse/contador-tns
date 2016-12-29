@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+import { Page } from 'ui/page'
 
 import { CounterListService } from './../../shared/counter/counter-list.service'
 import { Counter } from './../../shared/counter/counter'
@@ -15,14 +16,17 @@ export class CounterComponent implements OnInit{
     selected: Counter  
 
     constructor(private router: Router,
-                private counterListService: CounterListService){} 
+                private counterListService: CounterListService,
+                private page: Page){} 
 
     ngOnInit(){
 
-      if(this.counterListService.getAll().length === 0){ 
-        this.counterListService.select(this.counterListService.add('default'))
-      }      
+      this.page.actionBarHidden = true;
 
+      if(this.counterListService.getAll().length === 0){ 
+          this.counterListService.select(this.counterListService.add('default'))
+      }
+      
       this.selected = this.counterListService.getSelected() 
 
     }                

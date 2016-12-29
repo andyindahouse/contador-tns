@@ -7,6 +7,7 @@
     border-radius:50;
     background-color:white;
     color: #3F51B5;
+    border-width: 0;
 }
 
 .label {
@@ -14,9 +15,9 @@
     font-size: 35;   
 }
 .number {  
-    margin-top: 35;
+    margin-top: 75;
     font-family: "BebasNeueBold";
-    font-size: 140;
+    font-size: 150;
     color: #FFFFFF;
     text-align: center;    
 } 

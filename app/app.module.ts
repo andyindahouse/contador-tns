@@ -8,6 +8,7 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router'
 import { AppComponent } from './app.component'
 import { routes, navigatableComponents } from './app.routing'
 import { CounterListService } from './shared/counter/counter-list.service'
+import { CounterFS as CounterDAO } from './shared/counter/counter-fs'
 
 @NgModule({
     imports : [
@@ -16,7 +17,7 @@ import { CounterListService } from './shared/counter/counter-list.service'
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(routes)
     ],
-    providers: [CounterListService],    
+    providers: [CounterListService, CounterDAO],    
     declarations: [
         LISTVIEW_DIRECTIVES,
         AppComponent,
