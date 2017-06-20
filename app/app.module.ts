@@ -1,9 +1,8 @@
 import { LISTVIEW_DIRECTIVES } from 'nativescript-telerik-ui/listview/angular'
-
-import { NgModule } from '@angular/core'
 import { NativeScriptFormsModule } from "nativescript-angular/forms"
-import { NativeScriptModule } from "nativescript-angular/platform"
+import { NativeScriptModule } from "nativescript-angular/nativescript.module"
 import { NativeScriptRouterModule } from 'nativescript-angular/router'
+import { NgModule } from '@angular/core'
 
 import { AppComponent } from './app.component'
 import { routes, navigatableComponents } from './app.routing'

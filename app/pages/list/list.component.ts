@@ -2,9 +2,9 @@ import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core'
 import { Router } from "@angular/router"
 
 import { ListViewEventData, RadListView }  from "nativescript-telerik-ui/listview"
-import * as frameModule from "ui/frame"
-import { TextField } from "ui/text-field"
-import { ObservableArray } from "data/observable-array"
+import * as frameModule from "tns-core-modules/ui/frame"
+import { TextField } from "tns-core-modules/ui/text-field"
+import { ObservableArray } from "tns-core-modules/data/observable-array"
 
 
 import { CounterListService } from './../../shared/counter/counter-list.service'
@@ -80,9 +80,9 @@ export class ListComponent implements OnInit {
     var swipeLimits = args.data.swipeLimits;
     var listView = frameModule.topmost().currentPage.getViewById("listView");
 
-    swipeLimits.threshold = listView.getMeasuredWidth();
+    //swipeLimits.threshold = listView.getMeasuredWidth();
     swipeLimits.left = 0;
-    swipeLimits.right = listView.getMeasuredWidth();
+    //swipeLimits.right = listView.getMeasuredWidth();
 
   }
 

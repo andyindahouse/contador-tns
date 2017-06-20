@@ -27,7 +27,7 @@
     (itemSwipeProgressEnded)="onSwipeCellFinished($event)"  
     (itemTap)="onItemClick($event)">
 
-    <template tkListItemTemplate let-item="item">
+    <ng-template tkListItemTemplate let-item="item">
      
       <GridLayout        
         orientation="horizontal"
@@ -48,7 +48,7 @@
         
       </GridLayout>
 
-    </template>
+    </ng-template>
 
     <GridLayout 
       *tkListItemSwipeTemplate columns="auto, *, auto">

@@ -1,5 +1,5 @@
 import { CounterDao } from './counters-dao'
-import { knownFolders, File, Folder, path } from 'file-system'
+import { knownFolders, File, Folder, path } from 'tns-core-modules/file-system'
 
 
 export class CounterFS implements CounterDao {
